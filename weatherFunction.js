@@ -10,9 +10,10 @@ let clouds=document.querySelector(".clouds");
 button.addEventListener("click", function(){
     fetch("https://api.openweathermap.org/data/2.5/weather?q="
     +input.value+
-    "&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
+    "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
     .then(response => response.json())
     .then(data => {
+        
         let tempValue = data["main"]["temp"];
         let nameValue = data["name"];
         let descValue = data["weather"][0]["description"];
