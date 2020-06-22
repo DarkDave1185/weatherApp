@@ -16,6 +16,7 @@ p{
 .input{
   text-align: center;
   margin: 75px auto;
+  margin-bottom: 25px;
 }
   
 input[type="submit"]{
@@ -66,4 +67,9 @@ input[type="submit"]{
   text-align: center;
   margin:15px 0;
   font-size:20px;
+}
+
+.card-group{
+  justify-content: space-evenly;
+
 }
