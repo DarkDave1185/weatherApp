@@ -10,5 +10,9 @@ The user can getdaily weather and the 5-day forecast, including weather conditio
 *YouTube: Web Dev Simplified & Brent Farris & Shanjai Raj || 
 *Slack - #learning-assistants -
 
+## Screenshot- 
+
+![alt text](screenshot link "page name")
+
 ## Deployment Link- 
 https://github.com/DarkDave1185/randomPasswordGenerator
