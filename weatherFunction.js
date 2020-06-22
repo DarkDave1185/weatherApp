@@ -20,7 +20,7 @@ button.addEventListener("click", function(){
     fetch("https://api.openweathermap.org/data/2.5/weather?q="
     +input.value+
     "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
-    ().then(response => (response.json())
+    .then(response => response.json()
     .then(data => {
         /*WEATHER VARIABLES*/
         let tempValue = data["main"]["temp"];
@@ -40,7 +40,7 @@ button.addEventListener("click", function(){
     fetch("https://api.openweathermap.org/data/2.5/forecast?q="
     +input.value+
     "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
-    .then(response => response.json())
+    .then(response => console.log(response.json()))
     .then(data => {
         /*FORECAST VARIABLES*/
         let dateAValue = data["dt_txt"];
