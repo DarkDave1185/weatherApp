@@ -6,9 +6,9 @@ The user can getdaily weather and the 5-day forecast, including weather conditio
 
 ## Used-
 
-*Bootstrap || OpenWeather APIdoc
-*YouTube: Web Dev Simplified & Brent Farris & Shanjai Raj || 
-*Slack - #learning-assistants -
+**Bootstrap || OpenWeather APIdoc
+**YouTube: Web Dev Simplified & Brent Farris & Shanjai Raj 
+**Slack - #learning-assistants -
 
 ## Screenshot- 
 
