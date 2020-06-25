@@ -12,7 +12,7 @@ The user can getdaily weather and the 5-day forecast, including weather conditio
 
 ## Screenshot- 
 
-![alt text](screenshot link "page name")
+![alt text](https://github.com/DarkDave1185/weatherApp/blob/master/weatherAppScreen.jpg "weatherAppScreenShot")
 
 ## Deployment Link- 
 https://github.com/DarkDave1185/weatherApp
