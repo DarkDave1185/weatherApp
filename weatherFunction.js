@@ -4,10 +4,11 @@ let input=document.querySelector(".input_text");
 let main=document.querySelector("#name");
 let temp=document.querySelector(".temp");
 let desc=document.querySelector(".desc");
-let clouds=document.querySelector(".clouds");
+let clouds=document.querySelector("#clouds");
 let minMax=document.querySelector(".minMax");
 /*UV INDEX CONVERSION*/
-let latLon=document.querySelector(".latLon")
+let latLon=document.querySelector(".latLon");
+let uvIndex=document.querySelector("#uvIndex");
 /*FORECAST HTML CONVERSION--DAY1*/
 let tempA=document.querySelector(".tempA");
 let minMaxA=document.querySelector(".minMaxA");
@@ -43,41 +44,31 @@ let dateE=document.querySelector(".dateE");
 let windE=document.querySelector(".windE");
 let descE=document.querySelector(".descE");
 let feelsE=document.querySelector(".feelsE");
-
-
-
-/* pull from WEATHER API*/ /*WEATHER*/
-button.addEventListener("click", function(){
-    fetch("https://api.openweathermap.org/data/2.5/weather?q="
-    +input.value+
-    "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
-    .then(response => response.json()
+/*PULL FOR UV INDEX*/
+function setLonLat (latValue, lonValue) {
+    fetch("http://api.openweathermap.org/data/2.5/uvi?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat="+latValue+"&lon="+lonValue)
+    .then(response => response.json())
     .then(data => {
-        console.log(data.coord.lon)
-        /*WEATHER VARIABLES*/
-        let tempValue = data["main"]["temp"];
-        let nameValue = data["name"];
-        let descValue = data["weather"][0]["description"];
-        let maxValue = data["main"]["temp_max"];
-        let minValue = data["main"]["temp_min"];
-        /*UV INDEX WARIABLES*/
-        let latValue = data["coord"]["lat"];
-        let lonValue = data["coord"]["lon"];
-        /*VARIABLE CONVERSION*/
-        main.innerHTML = nameValue;
-        desc.innerHTML = "Conditions - "+descValue;
-        temp.innerHTML = "Temperature - "+tempValue+"°F";
-        minMax.innerHTML = minValue+"°F min/"+maxValue+"°F max";
-        input.value ="";
+        console.log(data)
+        /*UV INDEX VARIABLES*/
+        let uvValue = data["value"]
+        var uvIndex = document.getElementById("uvIndex");
+        if (uvValue < 5){
+            uvIndex.classList.add("good");
+        }else if(uvValue> 4 && uvValue < 10){
+            uvIndex.classList.add("ok");
+        }else{
+            uvIndex.classList.add("bad");
+        }
+    
         /*UV INDEX CONVERSION*/
-        latLon.innerHTML = "Lat: "+latValue+" Lon: "+lonValue;
-        
-})
+        uvIndex.innerHTML = "UV Value: "+uvValue;
 
-.catch(err => console.log(err)))
-})
+    })
+    /*.catch(err => console.log(err))*/
+}
 /*pull from WEATHER API*/ /*FORECAST*/
-button.addEventListener("click", function(){
+button.addEventListener("click", function fiveDay (){
     fetch("https://api.openweathermap.org/data/2.5/forecast?q="
     +input.value+
     "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
@@ -100,7 +91,7 @@ button.addEventListener("click", function(){
         descA.innerHTML = "Conditions - "+descAValue;
         windA.innerHTML = "Wind - "+windAValue;
         tempA.innerHTML = "Temperature - "+tempAValue+"°F";
-        minMaxA.innerHTML = minAValue+"°F min/"+maxAValue+"°F max";
+        minMaxA.innerHTML = minAValue+"/"+maxAValue+"°F";
         feelsA.innerHTML = "...but feels like "+feelsAValue+"°F";
         /*FORECAST VARIABLES -- DAY2*/ 
         let dateBValue = data["list"][12]["dt_txt"];
@@ -171,16 +162,36 @@ button.addEventListener("click", function(){
         minMaxE.innerHTML = minEValue+"°F min/"+maxEValue+"°F max";
         feelsE.innerHTML = "...but feels like "+feelsEValue+"°F";
 
+    })
 })
 
-.catch(err =>console.log(err))
-})
-/*pull from UV INDEX WEATHER API*/  
+/* pull from WEATHER API*/ /*WEATHER*/
 button.addEventListener("click", function(){
-    fetch("http://api.openweathermap.org/data/2.5/uvi/history?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat="+latValue+"&lon="+lonValue+"&cnt={cnt}&start={start}&end={end}")
-    .then(response => response.json())
+    fetch("https://api.openweathermap.org/data/2.5/weather?q="
+    +input.value+
+    "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
+    .then(response => response.json()
     .then(data => {
         console.log(data)
-    })
-.catch(err => console.log(err));
+        /*WEATHER VARIABLES*/
+        let tempValue = data["main"]["temp"];
+        let nameValue = data["name"];
+        let descValue = data["weather"][0]["description"];
+        let maxValue = data["main"]["temp_max"];
+        let minValue = data["main"]["temp_min"];
+        let latValue = data["coord"]["lat"];
+        let lonValue = data["coord"]["lon"];
+        let cloudValue = data["weather"][0]["icon"];
+        /*VARIABLE CONVERSION*/
+        main.innerHTML = nameValue;
+        desc.innerHTML = "Conditions - "+descValue;
+        temp.innerHTML = "Temperature - "+tempValue+"°F";
+        minMax.innerHTML = minValue+"°F min/"+maxValue+"°F max";
+        latLon.innerHTML = "Lat/Lon: "+latValue+" / "+lonValue;
+        input.value ="";
+        clouds.setAttribute("src", "http://openweathermap.org/img/wn/"+cloudValue+".png")
+        setLonLat(data["coord"]["lat"], data["coord"]["lon"]);    
+    })    
+
+.catch(err => console.log(err)))
 })

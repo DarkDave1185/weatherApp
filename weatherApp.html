@@ -17,21 +17,31 @@
       <div class="input">
         <p>Enter any city name</p>
         <input type="text" placeholder="Enter the city" class="input_text">
+        <div></div>
         <input type="submit" value="Submit" class="submit">
       </div>
     </div>
     <!--retrieved information from API for WEATHER-->
     <div class="container">
+      <!--PRESET LOCATION BUTTONS-->
+      <div class="row">
+        <button>New York</button>
+        <button>Los Angeles</button>
+        <button></button>
+        <button></button>
+        <button></button>
+      </div>
+      
       <div class="card">
         <h1 class="name" id="name"></h1>
+        <img id="clouds" src=""></img>
         <p class="temp"></p>
         <p class="minMax"></p>
-        <p class="clouds"></p>
         <p class="desc"></p>
+        <p id="uvIndex"></p>
         <p class="latLon"></p>
       </div>
     </div>
-
     <div>
       <!--retrieved information from API for FORECAST-->
       <div class="card-group">
