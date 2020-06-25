@@ -195,3 +195,9 @@ button.addEventListener("click", function(){
 
 .catch(err => console.log(err)))
 })
+
+/*PRESET BUTTONS REQUESTS*/
+button.addEventListener("click", function(){
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=honolulu&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
+    .then(response => response.json()
+    .then(data => {

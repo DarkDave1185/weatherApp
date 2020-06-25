@@ -2,8 +2,7 @@
   margin:0;
   padding: 0;
   box-sizing: border-box;
-}
-  
+} 
 body{
   font-family: "Nunito",sans-serif;
   background: #f8f8f8;
@@ -15,13 +14,28 @@ body{
   margin: 0px;
   align-self: center;
 }
+.row{
+  justify-content: center;
+}
+#preset{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+button{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 h1{
   text-align: center;
   font-size: 32px;
-  margin: 0px;
+  margin: 5px;
 }
 p{
   padding: 0px;
+  margin-bottom: 0px;
 }
 
 .input{
@@ -39,8 +53,7 @@ input[type="submit"]{
   font-family: "Nunito",sans-serif;
   font-weight:bold;
   font-size: 20px;
-}
-  
+} 
 .input input[type="text"]s{
   width: 600px;
   height: 55px;
@@ -51,8 +64,7 @@ input[type="submit"]{
   font-family: "Nunito",sans-serif;
   font-weight:bold;
   font-size: 20px;
-}
-  
+} 
 .card{
   width: 50%;
   background: #e7e7e7;
@@ -60,10 +72,7 @@ input[type="submit"]{
   border-radius: 2px;
   padding: 5px;
   margin: 10px;
-  
 }
-  
-  
 .close{
   float: right;
   margin-top: -2px;
@@ -91,7 +100,7 @@ input[type="submit"]{
   text-align: center;
   font-size: 12px;
 }
-
+/*UV INDEX RESPONSE COLORING*/
 .good{
   background-color: yellow;
   color: black;
