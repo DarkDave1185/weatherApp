@@ -46,7 +46,7 @@ let descE = document.querySelector(".descE");
 let feelsE = document.querySelector(".feelsE");
 /*PULL FOR UV INDEX*/
 function setLonLat(latValue, lonValue) {
-    fetch("http://api.openweathermap.org/data/2.5/uvi?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat=" + latValue + "&lon=" + lonValue)
+    fetch("https://api.openweathermap.org/data/2.5/uvi?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat=" + latValue + "&lon=" + lonValue)
         .then(response => response.json())
         .then(data => {
             console.log(data)
