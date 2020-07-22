@@ -45,7 +45,7 @@ let windE = document.querySelector(".windE");
 let descE = document.querySelector(".descE");
 let feelsE = document.querySelector(".feelsE");
 /*Searched Location Button Array*/
-let spots = ["test"];
+let spots = [];
 /*PULL FOR UV INDEX*/
 function setLonLat(latValue, lonValue) {
     fetch("https://api.openweathermap.org/data/2.5/uvi?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat=" + latValue + "&lon=" + lonValue)
@@ -252,8 +252,9 @@ function checkPreset(e) {
 /*anytime search is ran write to locale storage*/
 /*create empty array with popd city*/
 /*on page refresh open localstorage and parse and then iterrate through array and write to screen*/
+/*CREATE BUTTON ON SEARCH*/
 function placeSearch() {
-    let placeName = $(".input_text").attr("data-name");
+    let placeName = $(this).attr("data-name");
 
     console.log("you searched for " + placeName);
 }
@@ -273,5 +274,6 @@ $(".submit").on("click", function(event) {
     let spot = $(".input_text").val();
     spots.push(spot);
     searchedSpot();
+    placeSearch();
 });
 searchedSpot();
