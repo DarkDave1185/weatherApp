@@ -44,13 +44,15 @@ let dateE = document.querySelector(".dateE");
 let windE = document.querySelector(".windE");
 let descE = document.querySelector(".descE");
 let feelsE = document.querySelector(".feelsE");
+/*Searched Location Button Array*/
+let spots = ["test"];
 /*PULL FOR UV INDEX*/
 function setLonLat(latValue, lonValue) {
     fetch("https://api.openweathermap.org/data/2.5/uvi?appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0&lat=" + latValue + "&lon=" + lonValue)
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            /*UV INDEX VARIABLES*/
+                /*UV INDEX VARIABLES*/
             let uvValue = data["value"]
             var uvIndex = document.getElementById("uvIndex");
             if (uvValue < 5) {
@@ -65,17 +67,18 @@ function setLonLat(latValue, lonValue) {
             uvIndex.innerHTML = "UV Value: " + uvValue;
 
         })
-    /*.catch(err => console.log(err))*/
+        /*.catch(err => console.log(err))*/
 }
-/*pull from WEATHER API*/ /*FORECAST*/
+/*pull from WEATHER API*/
+/*FORECAST*/
 button.addEventListener("click", function fiveDay() {
-    fetch("https://api.openweathermap.org/data/2.5/forecast?q="
-        + input.value +
-        "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" +
+            input.value +
+            "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            /*FORECAST VARIABLES -- DAY1*/
+                /*FORECAST VARIABLES -- DAY1*/
             let dateAValue = data["list"][4]["dt_txt"];
             let tempAValue = data["list"][4]["main"]["temp"];
             let maxAValue = data["list"][4]["main"]["temp_max"];
@@ -165,15 +168,16 @@ button.addEventListener("click", function fiveDay() {
         })
 })
 
-/* pull from WEATHER API*/ /*WEATHER*/
-button.addEventListener("click", function () {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q="
-        + input.value +
-        "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
+/* pull from WEATHER API*/
+/*WEATHER*/
+button.addEventListener("click", function() {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" +
+            input.value +
+            "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
         .then(response => response.json()
             .then(data => {
                 console.log(data)
-                /*WEATHER VARIABLES*/
+                    /*WEATHER VARIABLES*/
                 let tempValue = data["main"]["temp"];
                 let nameValue = data["name"];
                 let descValue = data["weather"][0]["description"];
@@ -203,34 +207,34 @@ function checkPreset(e) {
     if (e.target !== e.currentTarget) {
         let clickedItem = e.target.id;
         console.log(clickedItem);
-        fetch("https://api.openweathermap.org/data/2.5/weather?q="
-            + clickedItem +
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=" +
+            clickedItem +
             "&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
 
-            .then(response => response.json()
-                .then(data => {
-                    console.log(data)
+        .then(response => response.json()
+            .then(data => {
+                console.log(data)
                     /*WEATHER VARIABLES*/
-                    let tempValue = data["main"]["temp"];
-                    let nameValue = data["name"];
-                    let descValue = data["weather"][0]["description"];
-                    let maxValue = data["main"]["temp_max"];
-                    let minValue = data["main"]["temp_min"];
-                    let latValue = data["coord"]["lat"];
-                    let lonValue = data["coord"]["lon"];
-                    let cloudValue = data["weather"][0]["icon"];
-                    /*VARIABLE CONVERSION*/
-                    main.innerHTML = nameValue;
-                    desc.innerHTML = "Conditions - " + descValue;
-                    temp.innerHTML = "Temperature - " + tempValue + "°F";
-                    minMax.innerHTML = minValue + "°F min/" + maxValue + "°F max";
-                    latLon.innerHTML = "Lat/Lon: " + latValue + " / " + lonValue;
-                    input.value = "";
-                    clouds.setAttribute("src", "http://openweathermap.org/img/wn/" + cloudValue + ".png")
-                    setLonLat(data["coord"]["lat"], data["coord"]["lon"]);
-                })
+                let tempValue = data["main"]["temp"];
+                let nameValue = data["name"];
+                let descValue = data["weather"][0]["description"];
+                let maxValue = data["main"]["temp_max"];
+                let minValue = data["main"]["temp_min"];
+                let latValue = data["coord"]["lat"];
+                let lonValue = data["coord"]["lon"];
+                let cloudValue = data["weather"][0]["icon"];
+                /*VARIABLE CONVERSION*/
+                main.innerHTML = nameValue;
+                desc.innerHTML = "Conditions - " + descValue;
+                temp.innerHTML = "Temperature - " + tempValue + "°F";
+                minMax.innerHTML = minValue + "°F min/" + maxValue + "°F max";
+                latLon.innerHTML = "Lat/Lon: " + latValue + " / " + lonValue;
+                input.value = "";
+                clouds.setAttribute("src", "http://openweathermap.org/img/wn/" + cloudValue + ".png")
+                setLonLat(data["coord"]["lat"], data["coord"]["lon"]);
+            })
 
-                .catch(err => console.log(err)))
+            .catch(err => console.log(err)))
     }
     e.stopPropagation();
 }
@@ -240,3 +244,34 @@ function checkPreset(e) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=honolulu&units=imperial&appid=b06ca37a6a6f13ebeaf5ae4e7ea80dd0")
     .then(response => response.json()
     .then(data => {*/
+
+/*localStorage*/
+/*get&setValue must stringify*/
+/*make sure function checks if array exist and if not should be created*/
+/*creating array happens during set item step*/
+/*anytime search is ran write to locale storage*/
+/*create empty array with popd city*/
+/*on page refresh open localstorage and parse and then iterrate through array and write to screen*/
+function placeSearch() {
+    let placeName = $(".input_text").attr("data-name");
+
+    console.log("you searched for " + placeName);
+}
+
+function searchedSpot() {
+    $("#searched").empty();
+    for (let i = 0; i < spots.length; i++) {
+        let a = $("<button>");
+        a.addClass("place");
+        a.attr("data-name", spots[i]);
+        a.text(spots[i]);
+        $("#searched").append(a);
+    }
+}
+$(".submit").on("click", function(event) {
+    event.preventDefault();
+    let spot = $(".input_text").val();
+    spots.push(spot);
+    searchedSpot();
+});
+searchedSpot();
