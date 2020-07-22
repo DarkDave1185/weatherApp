@@ -253,12 +253,6 @@ function checkPreset(e) {
 /*create empty array with popd city*/
 /*on page refresh open localstorage and parse and then iterrate through array and write to screen*/
 /*CREATE BUTTON ON SEARCH*/
-function placeSearch() {
-    let placeName = $(this).attr("data-name");
-
-    console.log("you searched for " + placeName);
-}
-
 function searchedSpot() {
     $("#searched").empty();
     for (let i = 0; i < spots.length; i++) {
@@ -274,6 +268,5 @@ $(".submit").on("click", function(event) {
     let spot = $(".input_text").val();
     spots.push(spot);
     searchedSpot();
-    placeSearch();
 });
 searchedSpot();
